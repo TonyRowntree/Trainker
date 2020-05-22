@@ -57,6 +57,10 @@ app.route('/SkillShare').get(function (req,res) {
     res.sendFile('views/skillshare.html', app_opts);
 })
 
+app.route('/Account').get(function (req,res) {
+    res.sendFile('views/account.html', app_opts);
+})
+
 /* app.route('/capture').get(function (req, res) {
     
     const input = fs.readFileSync("data/formspec.csv");

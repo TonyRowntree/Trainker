@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c39013ba-7957-429c-9442-169debf1796e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/projectx.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/contactus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/cvcreate.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/cvupload.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/privacy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/qa.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/recommendations.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/skillshare.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.hgignore" beforeDir="false" afterPath="$PROJECT_DIR$/.hgignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="c39013ba-7957-429c-9442-169debf1796e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,8 +30,13 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.16.3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
     <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server.js" working-dir="$PROJECT_DIR$">
@@ -74,6 +62,11 @@
       <workItem from="1590074241216" duration="5128000" />
       <workItem from="1590156604297" duration="3903000" />
       <workItem from="1590161002181" duration="5244000" />
+      <workItem from="1590174072138" duration="396000" />
+      <workItem from="1590174481220" duration="62000" />
+      <workItem from="1590174551894" duration="40000" />
+      <workItem from="1590174603665" duration="50000" />
+      <workItem from="1590174678435" duration="1249000" />
     </task>
     <servers />
   </component>
@@ -101,26 +94,34 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="447" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590161054066" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1590173388486">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1590174363042">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590173388486" />
-    <state width="2517" height="266" key="GridCell.Tab.0.bottom" timestamp="1590172156938">
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590174363042" />
+    <state width="2517" height="266" key="GridCell.Tab.0.bottom" timestamp="1590175820878">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="266" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590172156938" />
-    <state width="2517" height="266" key="GridCell.Tab.0.center" timestamp="1590172156938">
+    <state width="2517" height="266" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590175820878" />
+    <state width="2517" height="266" key="GridCell.Tab.0.center" timestamp="1590175820878">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="266" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590172156938" />
-    <state width="2517" height="266" key="GridCell.Tab.0.left" timestamp="1590172156937">
+    <state width="2517" height="266" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590175820878" />
+    <state width="2517" height="266" key="GridCell.Tab.0.left" timestamp="1590175820878">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="266" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590172156937" />
-    <state width="2517" height="266" key="GridCell.Tab.0.right" timestamp="1590172156938">
+    <state width="2517" height="266" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590175820878" />
+    <state width="2517" height="266" key="GridCell.Tab.0.right" timestamp="1590175820878">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="266" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590172156938" />
+    <state width="2517" height="266" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590175820878" />
+    <state x="760" y="274" key="SettingsEditor" timestamp="1590174372169">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="760" y="274" key="SettingsEditor/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590174372169" />
+    <state x="663" y="383" key="new project wizard" timestamp="1590174315723">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="663" y="383" key="new project wizard/0.0.2560.1400/2560.0.1920.1040@0.0.2560.1400" timestamp="1590174315723" />
   </component>
   <component name="hg4idea.settings">
     <option name="CHECK_INCOMING_OUTGOING" value="true" />
