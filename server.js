@@ -9,7 +9,7 @@ const bp = require('body-parser'); // body-parser has been unbundled from expres
 const mustache_express = require('mustache-express');
 //const push = require('push');
 const app_opts = { root: process.cwd() };
-const db = new nedb('./data/db.json');
+const db = new nedb('./data/db2.json');
 const json2csv = require('json2csv').parse;
 const showdown = require('showdown');
 
@@ -57,90 +57,141 @@ app.route('/SkillShare').get(function (req,res) {
     res.sendFile('views/skillshare.html', app_opts);
 })
 
-app.route('/Account').get(function (req,res) {
+app.route('/wadgKWOkjjbnjwoOwqdsf').get(function (req,res) {
     res.sendFile('views/account.html', app_opts);
 })
 
-/* app.route('/capture').get(function (req, res) {
-    
-    const input = fs.readFileSync("data/formspec.csv");
+app.route('/SignUp').get(function (req,res) {
+    res.sendFile('views/Acc1.html', app_opts);
+})
 
-    csv_parse(input, { comment: '#', cast: true, trim: true, columns: true }, function (err, data) {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log(data);
-            res.render("rubric", { rubric: data });
-        }
-    });
-}); 
+app.route('/LogIn').get(function (req,res) {
+    res.sendFile('views/signIn.html', app_opts);
+})
 
-app.route('/captureret').post(function (req, res) {
+app.route('/Skills').get(function (req,res) {
+    res.sendFile('views/skills.html', app_opts);
+})
+
+app.route('/AccSend').post(function (req, res) {
+
     console.log(req.body);
-    var comp = [];
-    var score = req.body.score;
-    
-    for(i=0; i < score.length; i++){
-        comp.push({ name: req.body.name[i], score: req.body.score[i], feedback: converter.makeHtml(req.body.feedback[i]), year: req.body.year, module: req.body.module, term: req.body.term});
-    };
 
-    var record = {key: req.body.key, component:comp};
-    
-    res.sendFile('views/returnhome.html', app_opts);
-    
+    /* var credentials = req.body;
+
+    var cred = JSON.stringify(credentials);
+
+    fs.appendFile('./data/db2.json', cred, done);
+
+    function done(err){
+
+        console.log('Data successfully logged');
+
+        res.writeHead(301, {Location: 'http://localhost:8080/'});
+        res.end();
+
+    } */
+
+    var key = req.body.email + req.body.password;
+
+    var record = {key: key};
+
     console.log(record);
-    
+
     db.insert(record);
-    
-}); 
 
+})
 
-app.route('/retrieve').get(function (req, res) {
-    res.sendFile("./views/keyretrieve.html", app_opts);
-}); 
+app.route('/Log').get(function (req,res) {
+    res.sendFile('views/signIn.html', app_opts);
+})
 
-app.route('/retrievekey').post(function(req,res){
-    key = req.body.key
+app.route('/AccAuth').post(function (req,res) {
+
+    console.log(req.body);
+
+    /* var data = fs.readFileSync('./data/db2.json');
+    var db = JSON.parse(data);
+
+    var gEmail = db.email;
+    var gPassword = db.password;
+    var lEmail = req.body.email;
+    var lPassword = req.body.password;
+
+    console.log(gEmail);
+    console.log(gPassword);
+    console.log(lEmail);
+    console.log(lPassword);
+
+    if (lEmail == gEmail && lPassword == gPassword){
+
+        console.log("correct email/password");
+        res.writeHead(301, {Location: 'http://localhost:8080/Account'});
+        res.end();
+
+    } else {
+
+        console.log("Incorrect");
+
+    } */
+
+    key = req.body.email + req.body.password;
+
+    console.log(key);
+
     db.find({key: key}, function (err, doc) {
-    if (err) {res.send('Key incorrect');} 
-        else {
-			if (doc.length>0) {
-                res.render("results", { results: doc[0].component });
-    		}
-			else {
-				res.send("You entered an invalid key or there is nothing in the DB")
-			}
-		}
-		
-   });
-    
-});
 
-//DownloadCSV
+        if (err){
 
-app.route('/downloadget').get(function (req, res) {
-    res.sendFile("./views/downloadretrieve.html", app_opts);
-}); 
+            res.send("Error");
 
-app.route('/downloadpost').post(function(req,res){
-    key = req.body.key
-    db.find({key: key}, function (err, doc) {
-    if (err) {res.send('Key incorrect');} 
-        else {
-			if (doc.length>0) {
-                const csvString = json2csv(doc[0].component);
-                res.setHeader('Content-disposition', 'attachment; filename=grades.csv');
-                res.set('Content-Type', 'text/csv');
-                res.status(200).send(csvString);
-    		}
-			else {
-				res.send("You entered an invalid key or there is nothing in the DB")
-			}
-		}
-		
-   });
-    
-}); */
+        } else {
+            if (doc.length>0) {
+
+                console.log("correct email/password");
+                res.writeHead(301, {Location: 'http://localhost:8080/wadgKWOkjjbnjwoOwqdsf'});
+                res.end();
+
+            } else {
+
+                res.send("Incorrect log in");
+
+            }
+
+
+
+
+        }
+
+    })
+
+
+
+
+
+
+    /* var email = req.body.email;
+    var password = req.body.password;
+
+    db.find({email: email}, function (err,doc) {
+
+        if (err) {res.send('incorrect email')}
+            else {
+                if (db.find({password: password})) {
+
+                    res.send('logged in');
+                    console.log("success!");
+
+                }
+
+        }
+
+    })*/
+
+
+
+})
+
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
