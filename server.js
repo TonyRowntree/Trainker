@@ -12,6 +12,7 @@ const app_opts = { root: process.cwd() };
 const db = new nedb('./data/db2.json');
 const json2csv = require('json2csv').parse;
 const showdown = require('showdown');
+const cookieParser = require('cookie-parser');
 
 //global var
 const app = new express();
@@ -22,6 +23,7 @@ db.loadDatabase(function(err) { if (err) { console.log("loadDatabase: error: " +
 app.engine('html', mustache_express()); // This tells express to use mustache for rendering.
 app.use(bp.urlencoded({ extended: false })); // we are just using basic forms.
 app.set('view engine', 'html');
+app.use(cookieParser());
 
 //routes of servers
 
@@ -57,10 +59,6 @@ app.route('/SkillShare').get(function (req,res) {
     res.sendFile('views/skillshare.html', app_opts);
 })
 
-app.route('/wadgKWOkjjbnjwoOwqdsf').get(function (req,res) {
-    res.sendFile('views/account.html', app_opts);
-})
-
 app.route('/SignUp').get(function (req,res) {
     res.sendFile('views/Acc1.html', app_opts);
 })
@@ -69,8 +67,30 @@ app.route('/LogIn').get(function (req,res) {
     res.sendFile('views/signIn.html', app_opts);
 })
 
-app.route('/Skills').get(function (req,res) {
-    res.sendFile('views/skills.html', app_opts);
+app.route('/LogConf').get(function (req,res) {
+    res.sendFile('views/LogConf.html', app_opts);
+})
+
+app.route('/Skills').get(function (req,res,document) {
+
+    //if (document.cookie == "Logged=True") {
+        res.sendFile("views/skills.html", app_opts);
+       // res.writeHead(301, {Location: 'http://localhost:8080/Skills'});
+       // res.end();
+
+    //} else {
+
+       // res.writeHead(301, {Location: 'http://localhost:8080/Log'});
+       //res.end();
+
+    //}
+
+})
+
+app.route('/Acc').get(function (req,res) {
+
+    res.sendFile('views/account.html', app_opts);
+
 })
 
 app.route('/AccSend').post(function (req, res) {
@@ -100,57 +120,41 @@ app.route('/AccSend').post(function (req, res) {
 
     db.insert(record);
 
+
+    res.writeHead(301, {Location: 'http://localhost:8080/'});
+    res.end();
+
 })
 
 app.route('/Log').get(function (req,res) {
     res.sendFile('views/signIn.html', app_opts);
 })
 
-app.route('/AccAuth').post(function (req,res) {
+ app.route('/AccAuth').post(function (req,res) {
 
     console.log(req.body);
 
-    /* var data = fs.readFileSync('./data/db2.json');
-    var db = JSON.parse(data);
-
-    var gEmail = db.email;
-    var gPassword = db.password;
-    var lEmail = req.body.email;
-    var lPassword = req.body.password;
-
-    console.log(gEmail);
-    console.log(gPassword);
-    console.log(lEmail);
-    console.log(lPassword);
-
-    if (lEmail == gEmail && lPassword == gPassword){
-
-        console.log("correct email/password");
-        res.writeHead(301, {Location: 'http://localhost:8080/Account'});
-        res.end();
-
-    } else {
-
-        console.log("Incorrect");
-
-    } */
-
-    key = req.body.email + req.body.password;
+    global.key = req.body.email + req.body.password;
 
     console.log(key);
 
-    db.find({key: key}, function (err, doc) {
+    db.find({key: key}, function (err, document) {
 
         if (err){
 
             res.send("Error");
 
         } else {
-            if (doc.length>0) {
+            if (document.length>0) {
 
                 console.log("correct email/password");
-                res.writeHead(301, {Location: 'http://localhost:8080/wadgKWOkjjbnjwoOwqdsf'});
+
+                res.writeHead(301, {Location: 'http://localhost:8080/LogConf'});
                 res.end();
+
+
+
+
 
             } else {
 
@@ -164,11 +168,6 @@ app.route('/AccAuth').post(function (req,res) {
         }
 
     })
-
-
-
-
-
 
     /* var email = req.body.email;
     var password = req.body.password;
@@ -188,7 +187,62 @@ app.route('/AccAuth').post(function (req,res) {
 
     })*/
 
+     /* var data = fs.readFileSync('./data/db2.json');
+ var db = JSON.parse(data);
 
+ var gEmail = db.email;
+ var gPassword = db.password;
+ var lEmail = req.body.email;
+ var lPassword = req.body.password;
+
+ console.log(gEmail);
+ console.log(gPassword);
+ console.log(lEmail);
+ console.log(lPassword);
+
+ if (lEmail == gEmail && lPassword == gPassword){
+
+     console.log("correct email/password");
+     res.writeHead(301, {Location: 'http://localhost:8080/Account'});
+     res.end();
+
+ } else {
+
+     console.log("Incorrect");
+
+ } */
+
+})
+
+app.route('/Acc').get(function (req,res) {
+    res.sendFile('views/account.html', app_opts);
+})
+
+app.route('/SkillLog').post(function (req,res) {
+
+    console.log(key);
+
+    console.log(req.body);
+
+    var s1 = req.body.skill1;
+    var s2 = req.body.skill2;
+    var s3 = req.body.skill3;
+    var s4 = req.body.skill4;
+
+    console.log(key);
+
+    db.update({key:key}, { $set: { "skills.s1": s1, "skills.s2":s2, "skills.s3":s3, "skills.s4":s4 }},{},function () {
+
+    })
+
+})
+
+
+//REMOVE BEFORE FINAL UPLOAD
+app.route('/delete').get(function (req,res) {
+
+    db.remove({}, {multi: true}, function (err,numRemoved) {
+    })
 
 })
 
