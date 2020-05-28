@@ -1,0 +1,21 @@
+<script>
+    if (document.cookie.indexOf("Logged=True") == -1) {
+
+        location.href = "http://localhost:8080/LogIn";
+
+    } else {
+
+        document.cookie = "Logged=True; max-age=0";
+        location.href = "http://localhost:8080/";
+}
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>

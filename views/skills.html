@@ -1,15 +1,7 @@
 <script>
-
     if (document.cookie.indexOf("Logged=True") == -1) {
-        location.href = "http://localhost:8080/Log";
-    } else {
-
-        document.cookie = "Logged=True; max-age=0";
-
+        location.href = "http://localhost:8080/LogIn";
     }
-
-
-
 </script>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -32,21 +24,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         More?
-                     </a>
-                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <a class="dropdown-item" href="http://localhost:8080/Q&A">Q&A</a>
-                         <a class="dropdown-item" href="http://localhost:8080/PrivacyPolicy">Privacy Policy</a>
-                         <div class="dropdown-divider"></div>
-                         <a class="dropdown-item" href="http://localhost:8080/ContactUs">Contact uss</a>
-                     </div>
-                </li>-->
             </ul>
         </div>
-        <a class="nav-link" href="http://localhost:8080/SignUp">SignUp<span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="http://localhost:8080/LogIn">Account<span class="sr-only">(current)</span></a>
+
+        <a class="nav-link" href="http://localhost:8080/SignUp">Sign Up<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
+        <script>
+            if (document.cookie.indexOf("Logged=True") == -1) {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogIn id=acc>log In<span class=sr-only>(current)</span></a>";
+
+            } else {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogOut id=acc>log Out<span class=sr-only>(current)</span></a>";
+                document.getElementById("rec").outerHTML = "<a class=nav-link href=http://localhost:8080/Reco id=rec>Recommendations<span class=sr-only>(current)</span></a>";
+
+            }
+
+        </script>
     </nav>
 </header>
 <body>
@@ -59,21 +54,6 @@
         <label>Skill: </label>
         <input type="text" class="form-control" name="skill1">
     </div>
-    <div class="form-group">
-        <label>Skill: </label>
-        <input type="text" class="form-control" name="skill2">
-    </div>
-    <div class="form-group">
-        <label>Skill: </label>
-        <input type="text" class="form-control" name="skill3">
-    </div>
-    <div class="form-group">
-        <label>Skill: </label>
-        <input type="text" class="form-control" name="skill4">
-    </div>
-    <br>
-    <br>
-    <br>
    <!-- <div class="form-group">
         <label>Email: </label>
         <input type="email" class="form-control" name="email">
@@ -83,7 +63,7 @@
         <input type="password" class="form-control" name="password">
     </div> --->
 
-    <button type="submit" class="btn btn-primary" onclick="skillSave()">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 <div id="result"></div>

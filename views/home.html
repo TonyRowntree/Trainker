@@ -21,6 +21,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/Skills">Skills</a>
                 </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link disabled" href="http://localhost:8080/Reco" id="rec">Recommendations</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Functionality
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Training" id="train">Training</a>
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Projects" id="proj">Projects</a>
+                    </div>
+                </li>
                 <!-- <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          More?
@@ -35,7 +47,26 @@
             </ul>
         </div>
         <a class="nav-link" href="http://localhost:8080/SignUp">Sign Up<span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="http://localhost:8080/LogIn">Account<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
+
+        <script>
+
+
+            if (document.cookie.indexOf("Logged=True") == -1) {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogIn id=acc>log In<span class=sr-only>(current)</span></a>";
+
+
+            } else {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogOut id=acc>log Out<span class=sr-only>(current)</span></a>";
+                document.getElementById("train").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Training id=train>Training<span class=sr-only>(current)</span></a>";
+                document.getElementById("proj").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Projects id=proj>Projects<span class=sr-only>(current)</span></a>";
+
+
+            }
+
+        </script>
     </nav>
 </header>
 <body>

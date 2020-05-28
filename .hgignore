@@ -1,7 +1,0 @@
-syntax: glob
-
-node_modules
-package-lock.json
-data/db.json
-# Default ignored files
-.idea/workspace.xml

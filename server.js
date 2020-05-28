@@ -2,15 +2,10 @@
 const nedb = require('nedb');
 const fs = require('fs');
 const express = require('express');
-const mustache = require('mustache');
-const csv_parse = require('csv-parse'); // for parsing a string as CSV.
-const csv_out = require('csv-stringify'); // to output CSV.
-const bp = require('body-parser'); // body-parser has been unbundled from express.
+const bp = require('body-parser');
 const mustache_express = require('mustache-express');
-//const push = require('push');
 const app_opts = { root: process.cwd() };
 const db = new nedb('./data/db2.json');
-const json2csv = require('json2csv').parse;
 const showdown = require('showdown');
 const cookieParser = require('cookie-parser');
 
@@ -20,8 +15,7 @@ converter = new showdown.Converter();
 db.loadDatabase(function(err) { if (err) { console.log("loadDatabase: error: " + err);} });
 
 //initalisations
-app.engine('html', mustache_express()); // This tells express to use mustache for rendering.
-app.use(bp.urlencoded({ extended: false })); // we are just using basic forms.
+app.use(bp.urlencoded({ extended: false }));
 app.set('view engine', 'html');
 app.use(cookieParser());
 
@@ -51,66 +45,37 @@ app.route('/Q&A').get(function (req,res) {
     res.sendFile('views/qa.html', app_opts);
 })
 
-app.route('/Recommendations').get(function (req,res) {
-    res.sendFile('views/recommendations.html', app_opts);
-})
-
 app.route('/SkillShare').get(function (req,res) {
     res.sendFile('views/skillshare.html', app_opts);
 })
 
 app.route('/SignUp').get(function (req,res) {
-    res.sendFile('views/Acc1.html', app_opts);
+    res.sendFile('views/signUp.html', app_opts);
 })
 
 app.route('/LogIn').get(function (req,res) {
     res.sendFile('views/signIn.html', app_opts);
 })
 
-app.route('/LogConf').get(function (req,res) {
+app.route('/kjwdawdahjWYHuy792fglpwhgmdk').get(function (req,res) {
     res.sendFile('views/LogConf.html', app_opts);
 })
 
+app.route('/LogOut').get(function (req,res) {
+    res.sendFile('views/LogOut.html', app_opts);
+})
+
 app.route('/Skills').get(function (req,res,document) {
-
-    //if (document.cookie == "Logged=True") {
-        res.sendFile("views/skills.html", app_opts);
-       // res.writeHead(301, {Location: 'http://localhost:8080/Skills'});
-       // res.end();
-
-    //} else {
-
-       // res.writeHead(301, {Location: 'http://localhost:8080/Log'});
-       //res.end();
-
-    //}
-
+    res.sendFile("views/skills.html", app_opts);
 })
 
 app.route('/Acc').get(function (req,res) {
-
     res.sendFile('views/account.html', app_opts);
-
 })
 
 app.route('/AccSend').post(function (req, res) {
 
     console.log(req.body);
-
-    /* var credentials = req.body;
-
-    var cred = JSON.stringify(credentials);
-
-    fs.appendFile('./data/db2.json', cred, done);
-
-    function done(err){
-
-        console.log('Data successfully logged');
-
-        res.writeHead(301, {Location: 'http://localhost:8080/'});
-        res.end();
-
-    } */
 
     var key = req.body.email + req.body.password;
 
@@ -149,12 +114,8 @@ app.route('/Log').get(function (req,res) {
 
                 console.log("correct email/password");
 
-                res.writeHead(301, {Location: 'http://localhost:8080/LogConf'});
+                res.writeHead(301, {Location: 'http://localhost:8080/kjwdawdahjWYHuy792fglpwhgmdk'});
                 res.end();
-
-
-
-
 
             } else {
 
@@ -162,55 +123,9 @@ app.route('/Log').get(function (req,res) {
 
             }
 
-
-
-
         }
 
     })
-
-    /* var email = req.body.email;
-    var password = req.body.password;
-
-    db.find({email: email}, function (err,doc) {
-
-        if (err) {res.send('incorrect email')}
-            else {
-                if (db.find({password: password})) {
-
-                    res.send('logged in');
-                    console.log("success!");
-
-                }
-
-        }
-
-    })*/
-
-     /* var data = fs.readFileSync('./data/db2.json');
- var db = JSON.parse(data);
-
- var gEmail = db.email;
- var gPassword = db.password;
- var lEmail = req.body.email;
- var lPassword = req.body.password;
-
- console.log(gEmail);
- console.log(gPassword);
- console.log(lEmail);
- console.log(lPassword);
-
- if (lEmail == gEmail && lPassword == gPassword){
-
-     console.log("correct email/password");
-     res.writeHead(301, {Location: 'http://localhost:8080/Account'});
-     res.end();
-
- } else {
-
-     console.log("Incorrect");
-
- } */
 
 })
 
@@ -224,18 +139,104 @@ app.route('/SkillLog').post(function (req,res) {
 
     console.log(req.body);
 
-    var s1 = req.body.skill1;
-    var s2 = req.body.skill2;
-    var s3 = req.body.skill3;
-    var s4 = req.body.skill4;
+    var s1 = req.body.skill1.toLowerCase();
+    /* var s2 = req.body.skill2.toLowerCase();
+    var s3 = req.body.skill3.toLowerCase();
+    var s4 = req.body.skill4.toLowerCase(); */
+
+    var skills = s1;
+    //skills.sort();
+
+    console.log(skills);
 
     console.log(key);
 
-    db.update({key:key}, { $set: { "skills.s1": s1, "skills.s2":s2, "skills.s3":s3, "skills.s4":s4 }},{},function () {
+    db.update({key:key}, { $set: { skills}},{},function () {
+
+    })
+
+    res.writeHead(301, {Location: 'http://localhost:8080/'});
+    res.end();
+
+})
+
+app.route('/Training').get(function (req,res) {
+
+    db.find({key: key}, function (err,data) {
+
+
+
+        var s1 = data[0].skills;
+        //var s2 = data[0].skills["s2"];
+        //var s3 = data[0].skills["s3"];
+        //var s4 = data[0].skills["s4"];
+
+
+        if (s1 == "c+") {
+
+            res.sendFile("views/training/c.html", app_opts);
+
+        } else if (s1 == "java"){
+
+            res.sendFile("views/training/j.html", app_opts);
+
+        } else if (s1 == "javascript") {
+
+            res.sendFile("views/training/js.html", app_opts);
+
+        } else if (s1 == "python") {
+
+            res.sendFile("views/training/p.html", app_opts);
+
+        } else {
+
+            res.send("You have incompatable skills - Please update and try again!");
+
+        }
 
     })
 
 })
+
+
+app.route('/Projects').get(function (req,res) {
+
+    db.find({key: key}, function (err,data) {
+
+
+
+        var s1 = data[0].skills;
+        //var s2 = data[0].skills["s2"];
+        //var s3 = data[0].skills["s3"];
+        //var s4 = data[0].skills["s4"];
+
+
+        if (s1 == "c+") {
+
+            res.sendFile("views/projects/c.html", app_opts);
+
+        } else if (s1 == "java"){
+
+            res.sendFile("views/projects/j.html", app_opts);
+
+        } else if (s1 == "javascript") {
+
+            res.sendFile("views/projects/js.html", app_opts);
+
+        } else if (s1 == "python") {
+
+            res.sendFile("views/projects/p.html", app_opts);
+
+        } else {
+
+            res.send("You have incompatable skills - Please update and try again!");
+
+        }
+
+    })
+
+})
+
 
 
 //REMOVE BEFORE FINAL UPLOAD
