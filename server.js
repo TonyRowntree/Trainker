@@ -172,7 +172,7 @@ app.route('/Training').get(function (req,res) {
         //var s4 = data[0].skills["s4"];
 
 
-        if (s1 == "c+") {
+        if (s1 == "c++" || s1 == "c plus") {
 
             res.sendFile("views/training/c.html", app_opts);
 
@@ -180,7 +180,7 @@ app.route('/Training').get(function (req,res) {
 
             res.sendFile("views/training/j.html", app_opts);
 
-        } else if (s1 == "javascript") {
+        } else if (s1 == "javascript" || s1 == "js") {
 
             res.sendFile("views/training/js.html", app_opts);
 
@@ -211,7 +211,7 @@ app.route('/Projects').get(function (req,res) {
         //var s4 = data[0].skills["s4"];
 
 
-        if (s1 == "c+") {
+        if (s1 == "c++" || s1 == "c plus") {
 
             res.sendFile("views/projects/c.html", app_opts);
 
@@ -219,7 +219,7 @@ app.route('/Projects').get(function (req,res) {
 
             res.sendFile("views/projects/j.html", app_opts);
 
-        } else if (s1 == "javascript") {
+        } else if (s1 == "javascript" || s1 == "js") {
 
             res.sendFile("views/projects/js.html", app_opts);
 
