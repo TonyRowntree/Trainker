@@ -26,12 +26,15 @@
                         Functionality
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item disabled" href="http://localhost:8080/Training" id="train">Training</a>
-                        <a class="dropdown-item disabled" href="http://localhost:8080/Projects" id="proj">Projects</a>
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Training2" id="train">Training</a>
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Projects2" id="proj">Projects</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="http://localhost:8080/ContactUs">Contact Us</a>
                     </div>
                 </li>
             </ul>
         </div>
+        <a class="nav-link" href="http://localhost:8080/Acc">Account<span class="sr-only">(current)</span></a>
         <a class="nav-link" href="http://localhost:8080/SignUp">Sign Up<span class="sr-only">(current)</span></a>
         <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
 
@@ -46,8 +49,8 @@
             } else {
 
                 document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogOut id=acc>log Out<span class=sr-only>(current)</span></a>";
-                document.getElementById("train").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Training id=train>Training<span class=sr-only>(current)</span></a>";
-                document.getElementById("proj").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Projects id=proj>Projects<span class=sr-only>(current)</span></a>";
+                document.getElementById("train").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Training2 id=train>Training<span class=sr-only>(current)</span></a>";
+                document.getElementById("proj").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Projects2 id=proj>Projects<span class=sr-only>(current)</span></a>";
 
 
             }

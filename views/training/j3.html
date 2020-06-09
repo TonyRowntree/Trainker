@@ -1,0 +1,125 @@
+<script>
+    if (document.cookie.indexOf("Logged=True") == -1) {
+
+        location.href = "http://localhost:8080/LogIn";
+
+    }
+</script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Tony Rowntree">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="http://localhost:8080">
+            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Trainker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/Skills">Skill Upload</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Functionality
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Training2" id="train">Training</a>
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Projects2" id="proj">Projects</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="http://localhost:8080/ContactUs">Contact Us</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a class="nav-link" href="http://localhost:8080/SignUp">Sign Up<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
+
+        <script>
+
+
+            if (document.cookie.indexOf("Logged=True") == -1) {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogIn id=acc>log In<span class=sr-only>(current)</span></a>";
+
+
+            } else {
+
+                document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogOut id=acc>log Out<span class=sr-only>(current)</span></a>";
+                document.getElementById("train").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Training2 id=train>Training<span class=sr-only>(current)</span></a>";
+                document.getElementById("proj").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Projects2 id=proj>Projects<span class=sr-only>(current)</span></a>";
+
+
+            }
+
+        </script>
+    </nav>
+</header>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div style="text-align: center;">
+                <h1><b>Java Advanced</b></h1>
+            </div>
+            <div style="text-align: center;">
+                <h2>
+                    <small class="text-muted">the advanced side of java</small>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <div style="text-align: center">
+                <div id="VideoContainer">
+
+                    <script>
+
+                        var video = document.createElement("video");
+
+                        video.setAttribute("id", "VideoElement");
+                        video.setAttribute("src", "images/j3.mp4");
+                        video.setAttribute("controls", "controls");
+                        video.setAttribute("preload", "auto");
+                        document.getElementById("VideoContainer").appendChild(video);
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <div style="text-align: center">
+                <p1>Thank you for watching, if you enjoyed please check out my other videos!</p1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

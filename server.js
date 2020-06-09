@@ -1,9 +1,7 @@
 //import
 const nedb = require('nedb');
-const fs = require('fs');
 const express = require('express');
 const bp = require('body-parser');
-const mustache_express = require('mustache-express');
 const app_opts = { root: process.cwd() };
 const db = new nedb('./data/db2.json');
 const showdown = require('showdown');
@@ -19,35 +17,14 @@ app.use(bp.urlencoded({ extended: false }));
 app.set('view engine', 'html');
 app.use(cookieParser());
 
-//routes of servers
-
+//Get routes
 app.route('').get(function (req, res) {
     res.sendFile('views/home.html', app_opts);    
 });
 
-app.route('/ContactUs').get(function (req,res) {
-    res.sendFile('views/contactus.html', app_opts);
-})
-
-app.route('/CVCreate').get(function (req,res) {
-    res.sendFile('views/cvcreate.html', app_opts);
-})
-
-app.route('/CVUpload').get(function (req,res) {
-    res.sendFile('views/cvupload.html', app_opts);
-})
-
-app.route('/PrivacyPolicy').get(function (req,res) {
-    res.sendFile('views/privacy.html', app_opts);
-})
-
-app.route('/Q&A').get(function (req,res) {
-    res.sendFile('views/qa.html', app_opts);
-})
-
-app.route('/SkillShare').get(function (req,res) {
-    res.sendFile('views/skillshare.html', app_opts);
-})
+//app.route('/PrivacyPolicy').get(function (req,res) {
+    //res.sendFile('views/privacy.html', app_opts);
+//})
 
 app.route('/SignUp').get(function (req,res) {
     res.sendFile('views/signUp.html', app_opts);
@@ -55,10 +32,6 @@ app.route('/SignUp').get(function (req,res) {
 
 app.route('/LogIn').get(function (req,res) {
     res.sendFile('views/signIn.html', app_opts);
-})
-
-app.route('/kjwdawdahjWYHuy792fglpwhgmdk').get(function (req,res) {
-    res.sendFile('views/LogConf.html', app_opts);
 })
 
 app.route('/LogOut').get(function (req,res) {
@@ -73,26 +46,121 @@ app.route('/Acc').get(function (req,res) {
     res.sendFile('views/account.html', app_opts);
 })
 
+app.route('/Log').get(function (req,res) {
+    res.sendFile('views/signIn.html', app_opts);
+})
+
+app.route('/Acc').get(function (req,res) {
+    res.sendFile('views/account.html', app_opts);
+})
+
+app.route('/Java1').get(function (req,res) {
+    res.sendFile('views/training/j1.html', app_opts);
+})
+
+app.route('/Java2').get(function (req,res) {
+    res.sendFile('views/training/j2.html', app_opts);
+})
+
+app.route('/Java3').get(function (req,res) {
+    res.sendFile('views/training/j3.html', app_opts);
+})
+
+app.route('/Js1').get(function (req,res) {
+    res.sendFile('views/training/js1.html', app_opts);
+})
+
+app.route('/Js2').get(function (req,res) {
+    res.sendFile('views/training/js2.html', app_opts);
+})
+
+app.route('/Js3').get(function (req,res) {
+    res.sendFile('views/training/js3.html', app_opts);
+})
+
+app.route('/c1').get(function (req,res) {
+    res.sendFile('views/training/c1.html', app_opts);
+})
+
+app.route('/c2').get(function (req,res) {
+    res.sendFile('views/training/c2.html', app_opts);
+})
+
+app.route('/c3').get(function (req,res) {
+    res.sendFile('views/training/c3.html', app_opts);
+})
+
+app.route('/p1').get(function (req,res) {
+    res.sendFile('views/training/p1.html', app_opts);
+})
+
+app.route('/p2').get(function (req,res) {
+    res.sendFile('views/training/p2.html', app_opts);
+})
+
+app.route('/p3').get(function (req,res) {
+    res.sendFile('views/training/p3.html', app_opts);
+})
+
+app.route('/ContactUs').get(function (req,res) {
+    res.sendFile("views/contactUs.html", app_opts);
+})
+app.route('/ContactUs').post(function (req,res) {
+    res.writeHead(301, {Location: 'http://localhost:8080/'});
+    res.end();
+})
+
+//Post routes
 app.route('/AccSend').post(function (req, res) {
 
     console.log(req.body);
 
+    var yes = true;
     var key = req.body.email + req.body.password;
+    var email = req.body.email;
 
-    var record = {key: key};
+    var record = {key: key, email: email};
 
     console.log(record);
 
-    db.insert(record);
+    db.find({}, function (err, doc) {
 
+        var emailInUse = false;
 
-    res.writeHead(301, {Location: 'http://localhost:8080/'});
-    res.end();
+        console.log(doc.length + "length before for loop!");
+        if(doc.length === 0){
 
-})
+            db.insert(record);
+            res.writeHead(301, {Location: 'http://localhost:8080/'});
+            res.end();
+            return;
+        }
 
-app.route('/Log').get(function (req,res) {
-    res.sendFile('views/signIn.html', app_opts);
+        for (var i = 0; i < doc.length; i++){
+
+            console.log(doc.length);
+
+            if(email === doc[i].email) {
+
+                console.log(doc.length + " DOC LENGTH");
+                console.log("Else IF: " + doc[i].email);
+                emailInUse = true;
+
+                res.send("Error, email already in use!");
+                return;
+            }
+        }
+
+        if (emailInUse === false){
+
+            db.insert(record);
+            res.writeHead(301, {Location: 'http://localhost:8080/'});
+            res.end();
+
+        }
+
+    })
+
 })
 
  app.route('/AccAuth').post(function (req,res) {
@@ -114,7 +182,9 @@ app.route('/Log').get(function (req,res) {
 
                 console.log("correct email/password");
 
-                res.writeHead(301, {Location: 'http://localhost:8080/kjwdawdahjWYHuy792fglpwhgmdk'});
+                res.set().cookie("Logged", "True");
+
+                res.writeHead(301, {Location: 'http://localhost:8080/'});
                 res.end();
 
             } else {
@@ -129,10 +199,6 @@ app.route('/Log').get(function (req,res) {
 
 })
 
-app.route('/Acc').get(function (req,res) {
-    res.sendFile('views/account.html', app_opts);
-})
-
 app.route('/SkillLog').post(function (req,res) {
 
     console.log(key);
@@ -140,12 +206,8 @@ app.route('/SkillLog').post(function (req,res) {
     console.log(req.body);
 
     var s1 = req.body.skill1.toLowerCase();
-    /* var s2 = req.body.skill2.toLowerCase();
-    var s3 = req.body.skill3.toLowerCase();
-    var s4 = req.body.skill4.toLowerCase(); */
 
     var skills = s1;
-    //skills.sort();
 
     console.log(skills);
 
@@ -160,56 +222,59 @@ app.route('/SkillLog').post(function (req,res) {
 
 })
 
-app.route('/Training').get(function (req,res) {
+app.route('/Training2').get(function (req,res) {
 
-    db.find({key: key}, function (err,data) {
+    console.log(req.headers.cookie);
+    var cook = req.headers.cookie;
 
+    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
 
+        db.find({key: key}, function (err,data) {
 
-        var s1 = data[0].skills;
-        //var s2 = data[0].skills["s2"];
-        //var s3 = data[0].skills["s3"];
-        //var s4 = data[0].skills["s4"];
+            var s1 = data[0].skills;
 
+            if (s1 == "c++" || s1 == "c plus") {
 
-        if (s1 == "c++" || s1 == "c plus") {
+                res.sendFile("views/training/c.html", app_opts);
 
-            res.sendFile("views/training/c.html", app_opts);
+            } else if (s1 == "java"){
 
-        } else if (s1 == "java"){
+                res.sendFile("views/training/j.html", app_opts);
 
-            res.sendFile("views/training/j.html", app_opts);
+            } else if (s1 == "javascript" || s1 == "js") {
 
-        } else if (s1 == "javascript" || s1 == "js") {
+                res.sendFile("views/training/js.html", app_opts);
 
-            res.sendFile("views/training/js.html", app_opts);
+            } else if (s1 == "python") {
 
-        } else if (s1 == "python") {
+                res.sendFile("views/training/p.html", app_opts);
 
-            res.sendFile("views/training/p.html", app_opts);
+            } else {
 
-        } else {
+                res.send("You have no skill selected, or you have an incompatable skill - Please update and try again!");
 
-            res.send("You have incompatable skills - Please update and try again!");
+            }
 
-        }
+        })
 
-    })
+    } else {
+
+        res.sendFile("views/signIn.html", app_opts)
+
+    }
 
 })
 
 
-app.route('/Projects').get(function (req,res) {
+app.route('/Projects2').get(function (req,res) {
+
+    var cook2 = req.headers.cookie;
+
+    if (cook2 == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
 
     db.find({key: key}, function (err,data) {
 
-
-
         var s1 = data[0].skills;
-        //var s2 = data[0].skills["s2"];
-        //var s3 = data[0].skills["s3"];
-        //var s4 = data[0].skills["s4"];
-
 
         if (s1 == "c++" || s1 == "c plus") {
 
@@ -235,9 +300,39 @@ app.route('/Projects').get(function (req,res) {
 
     })
 
+    } else {
+
+        res.sendFile("views/signIn.html", app_opts);
+
+    }
+
 })
 
+app.route('/SkillSave').get(function (req,res) {
 
+    var skill = req.body.hello;
+    var array = [];
+
+
+    db.find({key: key}, function (err, doc) {
+
+
+        for (var i = 0; i < doc.length; i++){
+
+            array.push({completedSkill: skill});
+            return;
+
+            }
+        db.update({key:key}, { $set: { skill}},{},function () {
+
+        })
+
+    })
+
+
+
+
+})
 
 //REMOVE BEFORE FINAL UPLOAD
 app.route('/delete').get(function (req,res) {
@@ -246,7 +341,6 @@ app.route('/delete').get(function (req,res) {
     })
 
 })
-
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
