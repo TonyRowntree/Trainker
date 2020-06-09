@@ -308,39 +308,42 @@ app.route('/Projects2').get(function (req,res) {
 
 })
 
-app.route('/SkillSave').get(function (req,res) {
+/* app.route('/SkillSave').post(function (req,res) {
 
-    var skill = req.body.hello;
+
+    console.log(req.body);
+    var compSkill = req.body.hello;
+    console.log(compSkill);
     var array = [];
 
 
     db.find({key: key}, function (err, doc) {
 
 
-        for (var i = 0; i < doc.length; i++){
+        for (i = 0; i < doc.length; i++){
 
-            array.push({completedSkill: skill});
+            array.push({completed: compSkill});
             return;
 
             }
-        db.update({key:key}, { $set: { skill}},{},function () {
+        db.update({key:key}, { $set: { compSkill}},{},function () {
 
         })
 
     })
 
+    console.log(array);
 
 
-
-})
+}) */
 
 //REMOVE BEFORE FINAL UPLOAD
-app.route('/delete').get(function (req,res) {
+//app.route('/delete').get(function (req,res) {
 
-    db.remove({}, {multi: true}, function (err,numRemoved) {
-    })
+    //db.remove({}, {multi: true}, function (err,numRemoved) {
+    //})
 
-})
+//})
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
