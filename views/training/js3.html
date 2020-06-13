@@ -76,7 +76,7 @@
             </div>
             <div style="text-align: center;">
                 <h2>
-                    <small class="text-muted">3</small>
+                    <small class="text-muted">The advanced side of JavaScript</small>
                 </h2>
             </div>
         </div>
@@ -86,6 +86,43 @@
     <br>
     <br>
     <br>
+    <div class="row">
+        <div class="col-sm">
+            <div style="text-align: center">
+                <div id="VideoContainer">
+
+                    <script>
+
+                        var video = document.createElement("video");
+
+                        video.setAttribute("id", "VideoElement");
+                        video.setAttribute("src", "images/j1.mp4");
+                        video.setAttribute("controls", "controls");
+                        video.setAttribute("preload", "auto");
+                        document.getElementById("VideoContainer").appendChild(video);
+
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <div style="text-align: center">
+                <p1>For further training please click <a href="https://www.w3schools.com/js/">here!</a></p1>
+            </div>
+        </div>
+    </div>
+    <form method=POST action="/SkillSaveJS3">
+        <div class="form-group">
+            <label>Please click submit to mark as complete</label>
+            <input type="hidden" class="form-control" name="js3" value="JavaScript Advanced">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

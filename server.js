@@ -2,6 +2,7 @@
 const nedb = require('nedb');
 const express = require('express');
 const bp = require('body-parser');
+const mustache_express = require('mustache-express');
 const app_opts = { root: process.cwd() };
 const db = new nedb('./data/db2.json');
 const showdown = require('showdown');
@@ -13,6 +14,7 @@ converter = new showdown.Converter();
 db.loadDatabase(function(err) { if (err) { console.log("loadDatabase: error: " + err);} });
 
 //initalisations
+app.engine('html', mustache_express());
 app.use(bp.urlencoded({ extended: false }));
 app.set('view engine', 'html');
 app.use(cookieParser());
@@ -25,6 +27,16 @@ app.route('').get(function (req, res) {
 //app.route('/PrivacyPolicy').get(function (req,res) {
     //res.sendFile('views/privacy.html', app_opts);
 //})
+
+app.route('/hello').get(function (req,res) {
+
+
+
+    res.render("test", {name:"tony"});
+
+})
+
+
 
 app.route('/SignUp').get(function (req,res) {
     res.sendFile('views/signUp.html', app_opts);
@@ -42,16 +54,9 @@ app.route('/Skills').get(function (req,res,document) {
     res.sendFile("views/skills.html", app_opts);
 })
 
-app.route('/Acc').get(function (req,res) {
-    res.sendFile('views/account.html', app_opts);
-})
 
 app.route('/Log').get(function (req,res) {
     res.sendFile('views/signIn.html', app_opts);
-})
-
-app.route('/Acc').get(function (req,res) {
-    res.sendFile('views/account.html', app_opts);
 })
 
 app.route('/Java1').get(function (req,res) {
@@ -308,42 +313,283 @@ app.route('/Projects2').get(function (req,res) {
 
 })
 
-/* app.route('/SkillSave').post(function (req,res) {
+app.route('/Acc').get(function (req,res) {
+
+    db.find({key: key}, function (err, doc) {
+
+        var j1 = doc[0].compSkillj1;
+        var j2 = doc[0].compSkillj2;
+        var j3 = doc[0].compSkillj3;
+        var c1 = doc[0].compSkillc1;
+        var c2 = doc[0].compSkillc2;
+        var c3 = doc[0].compSkillc3;
+        var js1 = doc[0].compSkilljs1;
+        var js2 = doc[0].compSkilljs2;
+        var js3 = doc[0].compSkilljs3;
+        var p1 = doc[0].compSkillp1;
+        var p2 = doc[0].compSkillp2;
+        var p3 = doc[0].compSkillp3;
+
+        var data = {j1: j1, j2:j2, j3: j3, c1: c1, c2: c2, c3: c3, p1: p1, p2: p2, p3: p3, js1: js1, js2: js2, js3: js3};
+
+        res.render("test", data);
+
+    })
+})
+
+ app.route('/SkillSaveJ1').post(function (req,res) {
 
 
     console.log(req.body);
-    var compSkill = req.body.hello;
-    console.log(compSkill);
-    var array = [];
+    var compSkillj1 = req.body.java1;
 
 
     db.find({key: key}, function (err, doc) {
 
+        db.update({key:key}, { $set: { compSkillj1}},{},function () {
 
-        for (i = 0; i < doc.length; i++){
 
-            array.push({completed: compSkill});
-            return;
-
-            }
-        db.update({key:key}, { $set: { compSkill}},{},function () {
 
         })
 
     })
 
-    console.log(array);
+
+})
+
+app.route('/SkillSaveJ2').post(function (req,res) {
 
 
-}) */
+    console.log(req.body);
+    var compSkillj2 = req.body.java2;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillj2}},{},function () {
+
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveJ3').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillj3 = req.body.java3;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillj3}},{},function () {
+
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveC1').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillc1 = req.body.cplus1;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillc1}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveC2').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillc2 = req.body.cplus2;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillc2}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveC3').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillc3 = req.body.cplus3;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillc3}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveP1').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillp1 = req.body.p1;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillp1}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveP2').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillp2 = req.body.p2;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillp2}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveP3').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkillp3 = req.body.p3;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkillp3}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveJS1').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkilljs1 = req.body.js1;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkilljs1}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveJS2').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkilljs2 = req.body.js2;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkilljs2}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+app.route('/SkillSaveJS3').post(function (req,res) {
+
+
+    console.log(req.body);
+    var compSkilljs3 = req.body.js3;
+
+
+    db.find({key: key}, function (err, doc) {
+
+        db.update({key:key}, { $set: { compSkilljs3}},{},function () {
+
+
+        })
+
+    })
+
+
+})
+
+/*function renderHello() {
+
+    db.find({key: key}, function (err, doc) {
+
+        var j1 = doc[0].compSkillj1;
+        var template = document.getElementById('template').innerHTML;
+        var rendered = Mustache.render(template, {j1: j1});
+        document.getElementById('target').innerHTML = rendered;
+
+    })
+}*/
+
+
+
 
 //REMOVE BEFORE FINAL UPLOAD
-//app.route('/delete').get(function (req,res) {
+app.route('/delete').get(function (req,res) {
 
-    //db.remove({}, {multi: true}, function (err,numRemoved) {
-    //})
+    db.remove({}, {multi: true}, function (err,numRemoved) {
+    })
 
-//})
+})
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
