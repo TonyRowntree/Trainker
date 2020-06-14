@@ -24,11 +24,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/Skills">Skill Upload</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Functionality
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Training2" id="train">Training</a>
+                        <a class="dropdown-item disabled" href="http://localhost:8080/Projects2" id="proj">Projects</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="http://localhost:8080/ContactUs">Contact Us</a>
+                    </div>
+                </li>
             </ul>
         </div>
-
         <a class="nav-link" href="http://localhost:8080/Acc">Account<span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="http://localhost:8080/SignUp">Sign Up<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8080/SignUp" id ="sign">Sign Up<span class="sr-only">(current)</span></a>
         <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
 
         <script>
@@ -37,6 +50,7 @@
             if (document.cookie.indexOf("Logged=True") == -1) {
 
                 document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogIn id=acc>log In<span class=sr-only>(current)</span></a>";
+                document.getElementById("sign").outerHTML = '<a class="nav-link" href="http://localhost:8080/SignUp" id ="sign">Sign Up<span class="sr-only">(current)</span></a>';
 
 
             } else {
@@ -44,6 +58,7 @@
                 document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogOut id=acc>log Out<span class=sr-only>(current)</span></a>";
                 document.getElementById("train").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Training2 id=train>Training<span class=sr-only>(current)</span></a>";
                 document.getElementById("proj").outerHTML = "<a class=dropdown-item href=http://localhost:8080/Projects2 id=proj>Projects<span class=sr-only>(current)</span></a>";
+                document.getElementById("sign").outerHTML = '';
 
 
             }

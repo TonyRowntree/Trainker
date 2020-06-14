@@ -543,7 +543,12 @@ app.route('/SkillSaveJS3').post(function (req,res) {
 
 })
 
+app.route('/delete').get(function (req,res) {
 
+    db.remove({}, { multi: true }, function (err, numRemoved) {
+    });
+
+})
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
