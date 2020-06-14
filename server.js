@@ -20,23 +20,10 @@ app.set('view engine', 'html');
 app.use(cookieParser());
 
 //Get routes
-app.route('').get(function (req, res) {
-    res.sendFile('views/home.html', app_opts);    
-});
 
-//app.route('/PrivacyPolicy').get(function (req,res) {
-    //res.sendFile('views/privacy.html', app_opts);
-//})
-
-app.route('/hello').get(function (req,res) {
-
-
-
-    res.render("test", {name:"tony"});
-
+app.route('/').get(function (req,res) {
+    res.sendFile('views/home.html', app_opts);
 })
-
-
 
 app.route('/SignUp').get(function (req,res) {
     res.sendFile('views/signUp.html', app_opts);
@@ -168,7 +155,7 @@ app.route('/AccSend').post(function (req, res) {
 
 })
 
- app.route('/AccAuth').post(function (req,res) {
+app.route('/AccAuth').post(function (req,res) {
 
     console.log(req.body);
 
@@ -206,24 +193,29 @@ app.route('/AccSend').post(function (req, res) {
 
 app.route('/SkillLog').post(function (req,res) {
 
-    console.log(key);
 
     console.log(req.body);
+    var cook = req.headers.cookie;
 
-    var s1 = req.body.skill1.toLowerCase();
+    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
 
-    var skills = s1;
+        var s1 = req.body.skill1.toLowerCase();
 
-    console.log(skills);
+        var skills = s1;
 
-    console.log(key);
+        console.log(skills);
 
-    db.update({key:key}, { $set: { skills}},{},function () {
+        try {db.update({key: key}, {$set: {skills}}, {}, function () {
 
-    })
+        }) } catch {
 
-    res.writeHead(301, {Location: 'http://localhost:8080/'});
-    res.end();
+            res.send("Please log out and back in!");
+
+        }
+
+        res.writeHead(301, {Location: 'http://localhost:8080/'});
+        res.end();
+    }
 
 })
 
@@ -234,7 +226,7 @@ app.route('/Training2').get(function (req,res) {
 
     if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
 
-        db.find({key: key}, function (err,data) {
+        try{ db.find({key: key}, function (err,data) {
 
             var s1 = data[0].skills;
 
@@ -260,7 +252,12 @@ app.route('/Training2').get(function (req,res) {
 
             }
 
-        })
+        }) } catch {
+
+            res.send("Please log out and back in!");
+
+        }
+
 
     } else {
 
@@ -277,33 +274,37 @@ app.route('/Projects2').get(function (req,res) {
 
     if (cook2 == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
 
-    db.find({key: key}, function (err,data) {
+        try {db.find({key: key}, function (err,data) {
 
-        var s1 = data[0].skills;
+            var s1 = data[0].skills;
 
-        if (s1 == "c++" || s1 == "c plus") {
+            if (s1 == "c++" || s1 == "c plus") {
 
-            res.sendFile("views/projects/c.html", app_opts);
+                res.sendFile("views/projects/c.html", app_opts);
 
-        } else if (s1 == "java"){
+            } else if (s1 == "java"){
 
-            res.sendFile("views/projects/j.html", app_opts);
+                res.sendFile("views/projects/j.html", app_opts);
 
-        } else if (s1 == "javascript" || s1 == "js") {
+            } else if (s1 == "javascript" || s1 == "js") {
 
-            res.sendFile("views/projects/js.html", app_opts);
+                res.sendFile("views/projects/js.html", app_opts);
 
-        } else if (s1 == "python") {
+            } else if (s1 == "python") {
 
-            res.sendFile("views/projects/p.html", app_opts);
+                res.sendFile("views/projects/p.html", app_opts);
 
-        } else {
+            } else {
 
-            res.send("You have incompatable skills - Please update and try again!");
+                res.send("You have incompatable skills - Please update and try again!");
+
+            }
+
+        }) } catch {
+
+            res.send("Please log out and back in!");
 
         }
-
-    })
 
     } else {
 
@@ -337,7 +338,7 @@ app.route('/Acc').get(function (req,res) {
     })
 })
 
- app.route('/SkillSaveJ1').post(function (req,res) {
+app.route('/SkillSaveJ1').post(function (req,res) {
 
 
     console.log(req.body);
@@ -348,12 +349,9 @@ app.route('/Acc').get(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillj1}},{},function () {
 
-
-
         })
 
     })
-
 
 })
 
@@ -368,12 +366,9 @@ app.route('/SkillSaveJ2').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillj2}},{},function () {
 
-
-
         })
 
     })
-
 
 })
 
@@ -388,12 +383,9 @@ app.route('/SkillSaveJ3').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillj3}},{},function () {
 
-
-
         })
 
     })
-
 
 })
 
@@ -408,11 +400,9 @@ app.route('/SkillSaveC1').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillc1}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -427,11 +417,9 @@ app.route('/SkillSaveC2').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillc2}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -446,11 +434,9 @@ app.route('/SkillSaveC3').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillc3}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -465,11 +451,9 @@ app.route('/SkillSaveP1').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillp1}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -484,11 +468,9 @@ app.route('/SkillSaveP2').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillp2}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -503,11 +485,9 @@ app.route('/SkillSaveP3').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkillp3}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -522,11 +502,9 @@ app.route('/SkillSaveJS1').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkilljs1}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -541,11 +519,9 @@ app.route('/SkillSaveJS2').post(function (req,res) {
 
         db.update({key:key}, { $set: { compSkilljs2}},{},function () {
 
-
         })
 
     })
-
 
 })
 
@@ -565,31 +541,9 @@ app.route('/SkillSaveJS3').post(function (req,res) {
 
     })
 
-
 })
 
-/*function renderHello() {
 
-    db.find({key: key}, function (err, doc) {
-
-        var j1 = doc[0].compSkillj1;
-        var template = document.getElementById('template').innerHTML;
-        var rendered = Mustache.render(template, {j1: j1});
-        document.getElementById('target').innerHTML = rendered;
-
-    })
-}*/
-
-
-
-
-//REMOVE BEFORE FINAL UPLOAD
-app.route('/delete').get(function (req,res) {
-
-    db.remove({}, {multi: true}, function (err,numRemoved) {
-    })
-
-})
 
 //Setting server
 app.use(express.static('public'));       // serve static files from 'public' directory.
