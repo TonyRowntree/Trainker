@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </div>
-        <a class="nav-link" href="http://localhost:8080/Acc">Account<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost:8080/Acc" id="accc">Account<span class="sr-only">(current)</span></a>
         <a class="nav-link" href="http://localhost:8080/SignUp" id ="sign">Sign Up<span class="sr-only">(current)</span></a>
         <a class="nav-link" href="http://localhost:8080/LogIn" id="acc">Log In<span class="sr-only">(current)</span></a>
 
@@ -45,6 +45,7 @@
 
                 document.getElementById("acc").outerHTML = "<a class=nav-link href=http://localhost:8080/LogIn id=acc>log In<span class=sr-only>(current)</span></a>";
                 document.getElementById("sign").outerHTML = '<a class="nav-link" href="http://localhost:8080/SignUp" id ="sign">Sign Up<span class="sr-only">(current)</span></a>';
+                document.getElementById("accc").outerHTML = ''
 
 
             } else {
