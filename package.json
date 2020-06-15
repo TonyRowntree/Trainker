@@ -1,12 +1,12 @@
 {
-  "name": "projectx",
-  "version": "1.0.0",
-  "description": "Class based excercise",
+  "name": "Trainker",
+  "version": "1.5.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "node test.js"
   },
-  "author": "projectX",
+  "author": "Tony Rowntree",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

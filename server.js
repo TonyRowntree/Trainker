@@ -197,7 +197,7 @@ app.route('/SkillLog').post(function (req,res) {
     console.log(req.body);
     var cook = req.headers.cookie;
 
-    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
+    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True" || cook == "Logged=True") {
 
         var s1 = req.body.skill1.toLowerCase();
 
@@ -224,7 +224,7 @@ app.route('/Training2').get(function (req,res) {
     console.log(req.headers.cookie);
     var cook = req.headers.cookie;
 
-    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
+    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True" || cook == "Logged=True") {
 
         try{ db.find({key: key}, function (err,data) {
 
@@ -270,9 +270,9 @@ app.route('/Training2').get(function (req,res) {
 
 app.route('/Projects2').get(function (req,res) {
 
-    var cook2 = req.headers.cookie;
+    var cook = req.headers.cookie;
 
-    if (cook2 == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True") {
+    if (cook == "Idea-75d1fab4=54962c49-07ba-44f6-a049-683b5dfddb35; Logged=True" || cook == "Logged=True") {
 
         try {db.find({key: key}, function (err,data) {
 
